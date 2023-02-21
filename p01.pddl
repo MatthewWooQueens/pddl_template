@@ -13,17 +13,26 @@
   (:init
 
     ; Hero location and carrying status
-
+    (hero-at loc-1-2)
     ; Locationg <> Corridor Connections
-
+    (corridor-at c3132 loc-3-1 loc-3-2)
     ; Key locations
-
+    (key-at key1 loc-2-2)
     ; Locked corridors
-
+    (lockCor c2324 key1)
+    (lockCor c2434 key1)
+    (lockCor c3444 key2)
+    (lockCor c3132 key3)
+    (lockCor c3242 key4)
     ; Risky corridors
-
+    (riskyCor c2324)
+    (riskyCor c2434)
     ; Key colours
-
+    (keyCol key1 red)
+    (keyCol key2 yellow)
+    (keyCol key3 rainbow)
+    (keyCol key4 purple)
+    
     ; Key usage properties (one use, two use, etc)
 
   )

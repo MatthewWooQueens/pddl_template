@@ -23,7 +23,19 @@
         (hero-at ?loc - location)
 
         ; IMPLEMENT ME
+        ;corridor between locations
+        (corridor-at ?cor - corridor ?from ?to - location)
+        ;key location
+        (key-at ?key - key ?loc - location)
 
+        ;locked corridor
+        (lockCor ?cor - corridor ?key - key)
+
+        ;risky corridor
+        (riskyCor ?cor - corridor)
+
+        ;key color
+        (keyCol ?key - key ?colour - colour)
     )
 
     ; IMPORTANT: You should not change/add/remove the action names or parameters
