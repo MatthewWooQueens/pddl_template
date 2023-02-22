@@ -23,6 +23,9 @@
         (hero-at ?loc - location)
 
         ; IMPLEMENT ME
+        ; hero arm is free
+        (arm-free)
+
         ;corridor between locations
         (corridor-at ?cor - corridor ?from ?to - location)
 
@@ -95,13 +98,16 @@
 
         :precondition (and
 
-            ; IMPLEMENT ME
-
+            (hero-at ?loc)
+            (key-at ?key ?loc)
+            (arm-free)
+            (messy-at ?loc)
         )
 
         :effect (and
 
-            ; IMPLEMENT ME
+            not (arm-free)
+            (holding-key ?key)
 
         )
     )
@@ -116,13 +122,15 @@
 
         :precondition (and
 
-            ; IMPLEMENT ME
+            (holding-key ?key)
+            (hero-at ?loc)
 
         )
 
         :effect (and
 
-            ; IMPLEMENT ME
+            not (holding-key ?key)
+            (arm-free)
 
         )
     )
