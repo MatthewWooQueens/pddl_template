@@ -25,18 +25,21 @@
         ; IMPLEMENT ME
         ;corridor between locations
         (corridor-at ?cor - corridor ?from ?to - location)
+
+        ;location connected to corridor
+        (loc-con-cor ?cor - corridor ?loc - location)
         
         ;key location
         (key-at ?key - key ?loc - location)
 
         ;locked corridor
-        (lockCor ?cor - corridor ?key - key)
+        (lockCor ?cor - corridor ?col - colour)
 
         ;risky corridor
         (riskyCor ?cor - corridor)
 
         ;key color
-        (keyCol ?key - key ?colour - colour)
+        (keyCol ?key - key ?col - colour)
 
         ;messy
         (messy-at ?loc - location)
@@ -139,14 +142,23 @@
 
         :precondition (and
             (holding-key ?key)
-            ()
-
+            (or (oneUse ?key) (twoUse ?key) (multiUse ?key))
+            (lockCor ?cor ?col)
+            (keyCol ?key ?col)
+            (hero-at ?loc)
+            (loc-con-cor ?cor ?loc)
         )
 
         :effect (and
-
-            ; IMPLEMENT ME
-
+            (when (oneUse ?key)
+                (not 
+                    (oneUse ?key)))
+            (when (twoUse ?key)
+                (not 
+                    (twoUse ?key)
+                    (oneUse ?key)))
+            not (lockCor ?cor ?col)
+            
         )
     )
 
