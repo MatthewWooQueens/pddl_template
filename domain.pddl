@@ -92,8 +92,9 @@
             (hero-at ?to)
             (not (hero-at ?from))
             (not (hero-move-to ?to))
-            (not (corridor-at ?cor ?from ?to))
-            (messy-at ?to)
+            (when (riskyCor ?cor)
+                (not (corridor-at ?cor ?from ?to))
+                (messy-at ?to))
 
         )
     )
