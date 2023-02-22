@@ -50,6 +50,9 @@
         (twoUse ?key - key)
 
         (multiUse ?key - key)
+
+        ;holding key
+        (holding-key ?key - key)
     )
 
     ; IMPORTANT: You should not change/add/remove the action names or parameters
@@ -135,8 +138,8 @@
         :parameters (?loc - location ?cor - corridor ?col - colour ?k - key)
 
         :precondition (and
-
-            ; IMPLEMENT ME
+            (holding-key ?key)
+            ()
 
         )
 
