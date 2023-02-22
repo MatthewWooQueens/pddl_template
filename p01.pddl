@@ -18,6 +18,9 @@
     (corridor-at c3132 loc-3-1 loc-3-2)
     ; Key locations
     (key-at key1 loc-2-2)
+    (key-at key2 loc-2-4)
+    (key-at key3 loc-4-2)
+    (key-at key4 loc-4-4)
     ; Locked corridors
     (lockCor c2324 key1)
     (lockCor c2434 key1)
@@ -34,7 +37,10 @@
     (keyCol key4 purple)
     
     ; Key usage properties (one use, two use, etc)
-
+    (oneUse key1)
+    (twoUse key2)
+    (multiUse key3)
+    (oneUse key4)
   )
   (:goal
     (and
