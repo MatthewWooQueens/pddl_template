@@ -36,6 +36,9 @@
 
         ;key color
         (keyCol ?key - key ?colour - colour)
+
+        ;messy
+        (messy-at ?loc - location)
     )
 
     ; IMPORTANT: You should not change/add/remove the action names or parameters
@@ -142,15 +145,12 @@
         :parameters (?loc - location)
 
         :precondition (and
-
-            ; IMPLEMENT ME
-
+            (hero-at ?loc)
+            (messy-at ?loc)
         )
 
         :effect (and
-
-            ; IMPLEMENT ME
-
+            (not (messy-at ?loc))
         )
     )
 
