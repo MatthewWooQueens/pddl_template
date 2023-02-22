@@ -25,6 +25,7 @@
         ; IMPLEMENT ME
         ;corridor between locations
         (corridor-at ?cor - corridor ?from ?to - location)
+        
         ;key location
         (key-at ?key - key ?loc - location)
 
@@ -39,6 +40,16 @@
 
         ;messy
         (messy-at ?loc - location)
+
+        ;key tyepe
+        (keyunlocks ?key - key ?cor - corridor)
+
+        ;key oneUse
+        (oneUse ?key - key)
+
+        (twoUse ?key - key)
+
+        (multiUse ?key - key)
     )
 
     ; IMPORTANT: You should not change/add/remove the action names or parameters
