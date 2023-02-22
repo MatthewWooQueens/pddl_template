@@ -26,6 +26,9 @@
         ; hero arm is free
         (arm-free)
 
+        ; hero move to location
+        (hero-move-to ?loc - location)
+
         ;corridor between locations
         (corridor-at ?cor - corridor ?from ?to - location)
 
@@ -36,7 +39,10 @@
         (key-at ?key - key ?loc - location)
 
         ;locked corridor
-        (lockCor ?cor - corridor ?col - colour)
+        (lockCor ?cor - corridor)
+
+        ;locked corridor colour
+        (lockCorCol ?cor - corridor ?col - colour)
 
         ;risky corridor
         (riskyCor ?cor - corridor)
@@ -75,13 +81,19 @@
 
         :precondition (and
 
-            ; IMPLEMENT ME
+            (hero-at ?from)
+            (hero-move-to ?to)
+            (corridor-at ?cor ?from ?to)
+            (not (lockCor ?cor))
 
         )
 
         :effect (and
-
-            ; IMPLEMENT ME
+            (hero-at ?to)
+            (not (hero-at ?from))
+            (not (hero-move-to ?to))
+            (not (corridor-at ?cor ?from ?to))
+            (messy-at ?to)
 
         )
     )
@@ -106,7 +118,7 @@
 
         :effect (and
 
-            not (arm-free)
+            (not (arm-free))
             (holding-key ?key)
 
         )
@@ -129,7 +141,7 @@
 
         :effect (and
 
-            not (holding-key ?key)
+            (not (holding-key ?key))
             (arm-free)
 
         )
@@ -151,7 +163,8 @@
         :precondition (and
             (holding-key ?key)
             (or (oneUse ?key) (twoUse ?key) (multiUse ?key))
-            (lockCor ?cor ?col)
+            (lockCor ?cor)
+            (lockCorCol ?cor ?col)
             (keyCol ?key ?col)
             (hero-at ?loc)
             (loc-con-cor ?cor ?loc)
@@ -165,7 +178,7 @@
                 (not 
                     (twoUse ?key)
                     (oneUse ?key)))
-            not (lockCor ?cor ?col)
+            (not (lockCor ?cor))
             
         )
     )
