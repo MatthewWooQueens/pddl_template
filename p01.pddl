@@ -16,6 +16,27 @@
     (hero-at loc-1-2)
     ; Locationg <> Corridor Connections
     (corridor-at c3132 loc-3-1 loc-3-2)
+    (corridor-at c3132 loc-3-2 loc-3-1)
+    (corridor-at c3132 loc-1-2 loc-2-2)
+    (corridor-at c3132 loc-2-2 loc-1-2)
+    (corridor-at c3132 loc-2-2 loc-3-2)
+    (corridor-at c3132 loc-3-2 loc-2-2)
+    (corridor-at c3132 loc-3-2 loc-4-2)
+    (corridor-at c3132 loc-4-2 loc-3-2)
+    (corridor-at c3132 loc-2-2 loc-2-3)
+    (corridor-at c3132 loc-2-3 loc-2-2)
+    (corridor-at c3132 loc-3-2 loc-3-3)
+    (corridor-at c3132 loc-3-3 loc-3-2)
+    (corridor-at c3132 loc-2-3 loc-3-3)
+    (corridor-at c3132 loc-3-3 loc-2-3)
+    (corridor-at c3132 loc-2-3 loc-2-4)
+    (corridor-at c3132 loc-2-4 loc-2-3)
+    (corridor-at c3132 loc-3-3 loc-3-4)
+    (corridor-at c3132 loc-3-4 loc-3-3)
+    (corridor-at c3132 loc-2-4 loc-3-4)
+    (corridor-at c3132 loc-3-4 loc-2-4)
+    (corridor-at c3132 loc-3-4 loc-4-4)
+    (corridor-at c3132 loc-4-4 loc-3-4)
     ; Key locations
     (key-at key1 loc-2-2)
     (key-at key2 loc-2-4)
@@ -45,6 +66,7 @@
   (:goal
     (and
       ; Hero's final location goes here
+      (hero-at loc-3-1)
     )
   )
 
