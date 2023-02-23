@@ -99,7 +99,9 @@
             (not (hero-move-to ?to))
             (when (riskyCor ?cor) (and
                 (not (corridor-at ?cor ?from ?to))
-                (messy-at ?to)))
+                (messy-at ?to)
+                (not (location-con-cor ?cor ?from))
+                (not (location-con-cor ?cor ?to)) ))
 
         )
     )
