@@ -149,6 +149,7 @@
         :effect (and
 
             (not (holding-key ?k))
+            (key-at ?k ?loc)
             (arm-free)
 
         )
