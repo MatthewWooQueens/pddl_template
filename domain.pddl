@@ -30,10 +30,11 @@
         (hero-move-to ?loc - location)
 
         ;corridor between locations
+        ;this predicate is going to be replaced with location-con-cor
         (corridor-at ?cor - corridor ?from ?to - location)
 
         ;location connected to corridor
-        (loc-con-cor ?cor - corridor ?loc - location)
+        (location-con-cor ?cor - corridor ?loc - location)
         
         ;key location
         (key-at ?key - key ?loc - location)
@@ -65,6 +66,9 @@
 
         ;holding key
         (holding-key ?key - key)
+
+        ;key has no uses
+        (no-use-key ?key)
     )
 
     ; IMPORTANT: You should not change/add/remove the action names or parameters
@@ -82,8 +86,9 @@
         :precondition (and
 
             (hero-at ?from)
-            (hero-move-to ?to)
             (corridor-at ?cor ?from ?to)
+            (location-con-cor ?cor ?from)
+            (location-con-cor ?cor ?to)
             (not (lockCor ?cor))
 
         )
@@ -92,9 +97,9 @@
             (hero-at ?to)
             (not (hero-at ?from))
             (not (hero-move-to ?to))
-            (when (riskyCor ?cor)
+            (when (riskyCor ?cor) (and
                 (not (corridor-at ?cor ?from ?to))
-                (messy-at ?to))
+                (messy-at ?to)))
 
         )
     )
@@ -112,15 +117,16 @@
         :precondition (and
 
             (hero-at ?loc)
-            (key-at ?key ?loc)
+            (key-at ?k ?loc)
             (arm-free)
-            (messy-at ?loc)
+            (not (messy-at ?loc))
         )
 
         :effect (and
 
             (not (arm-free))
-            (holding-key ?key)
+            (holding-key ?k)
+            (not (key-at ?k ?loc))
 
         )
     )
@@ -135,14 +141,14 @@
 
         :precondition (and
 
-            (holding-key ?key)
+            (holding-key ?k)
             (hero-at ?loc)
 
         )
 
         :effect (and
 
-            (not (holding-key ?key))
+            (not (holding-key ?k))
             (arm-free)
 
         )
@@ -162,23 +168,18 @@
         :parameters (?loc - location ?cor - corridor ?col - colour ?k - key)
 
         :precondition (and
-            (holding-key ?key)
-            (or (oneUse ?key) (twoUse ?key) (multiUse ?key))
+            (holding-key ?k)
+            (not (no-use-key ?k))
             (lockCor ?cor)
             (lockCorCol ?cor ?col)
-            (keyCol ?key ?col)
+            (keyCol ?k ?col)
             (hero-at ?loc)
-            (loc-con-cor ?cor ?loc)
+            (location-con-cor ?cor ?loc)
         )
 
         :effect (and
-            (when (oneUse ?key)
-                (not 
-                    (oneUse ?key)))
-            (when (twoUse ?key)
-                (not 
-                    (twoUse ?key)
-                    (oneUse ?key)))
+            (when (oneUse ?k) (and (not (oneUse ?k)) (no-use-key ?k)))
+            (when (twoUse ?k) (and (not (twoUse ?k)) (oneUse ?k)))
             (not (lockCor ?cor))
             
         )
