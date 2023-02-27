@@ -87,9 +87,9 @@
     (keyCol key4 purple)
     
     ; Key usage properties (one use, two use, etc)
-    (oneUse key1)
+    (multiUse key1)
     (twoUse key2)
-    (multiUse key3)
+    (oneUse key3)
     (oneUse key4)
     ;hero arm is free at start
     (arm-free)
