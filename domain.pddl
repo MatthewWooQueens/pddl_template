@@ -29,10 +29,6 @@
         ; hero move to location
         (hero-move-to ?loc - location)
 
-        ;corridor between locations
-        ;this predicate is going to be replaced with location-con-cor
-        (corridor-at ?cor - corridor ?from ?to - location)
-
         ;location connected to corridor
         (location-con-cor ?cor - corridor ?loc - location)
         
